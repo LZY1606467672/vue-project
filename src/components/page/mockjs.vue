@@ -1,12 +1,15 @@
 <template>
 <div>
   <div>{{testdata}}--{{namespace}}</div>
-  <ul>
-      <li v-for="(item,index) in data" :key="index">{{item.author}}</li>
-  </ul>
+  <transition name="fade-in">
+    <ul>
+        <li v-for="(item,index) in data" :key="index">{{item.author}}--{{item.title}}</li>
+    </ul>
+  </transition>
   <form>
-      <!-- <input type="button" value="test" @click="BtnClick()"> -->
+    <transition name="fade-in">
       <el-button type="primary" @click="BtnClick()">主要按钮</el-button>
+    </transition>
   </form>
 </div>
 </template>
@@ -22,7 +25,7 @@ export default {
         }
     },
     created() {
-        
+
     },
     computed:{
         ...mapState({
@@ -30,15 +33,15 @@ export default {
         })
     },
     methods:{
-        // ...mapMutations('user/TOKEN'),
+        ...mapMutations({token: 'user/TOKEN'}),
         ...mapActions({
-            getname:'test/getName'  //命名空间模块化
+            getname: 'test/getName'  //命名空间模块化
         }),
         BtnClick(){
-            this.getname();
+            this.getname("show me your code");
             this.$axios.get('/mock').then((res) => {
                 console.log(res.data);
-                this.data = res.data
+                this.data = res.data;
             })
         }
     }

@@ -1,18 +1,22 @@
 export const TOKEN = 'TOKEN'
 const state = {
-    token: ''
+  token: null
 }
 
 const mutations = {
-    [TOKEN]:(state,token) =>{
-        state.token = token
-    }
+  [TOKEN]:(state,token) =>{
+    localStorage.token = token;
+    state.token = token;
+  }
 }
 
 const actions = {
-    setToken: ({commit})=>{
-        commit('TOKEN')
-    }
+  setToken: ({ commit, state }, token)=>{
+    return new Promise(resolve =>{
+      commit("TOKEN", token);
+      console.log("login success")
+    })
+  }
 }
 
 export default {

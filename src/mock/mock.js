@@ -30,3 +30,5 @@ const produceData = function(opt){
 */
 Mock.mock('/test', /post|get/, testData);
 Mock.mock('/mock', /post|get/, produceData);
+
+export default Mock;

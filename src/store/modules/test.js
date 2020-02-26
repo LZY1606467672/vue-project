@@ -4,15 +4,14 @@ const state = {
 }
 
 const mutations = {
-    [TEST]:(state,login) =>{
-        state.kaka = login;
+    [TEST]:(state,data) =>{
+        state.kaka = data;
     }
 }
 
 const actions = {
-    getName({commit}){
-        alert("模块化vuex");
-        // commit('TEST');
+    getName({commit}, data){
+        commit('TEST', data);
     }
 }
 
@@ -56,4 +55,22 @@ export default {
         ...mapActions({
             changeNameAction:'moduleA/moduleAAction'
         })
+    4、{mapState, mapActions, mapMutations}在组件中的调用
+        1、mapState
+          1、在computed计算属性中使用
+              computed:...mapState(['count'])
+        2、mapMutations
+          1、在methods方法中使用
+              methods:{
+                ...mapMutations({add: 'test/TEST'})
+                }  (add为方法别名)
+          2、普通方式执行
+              this.$store.commit('xxx', param)提交
+        3、mapActions
+          1、在methods方法中使用
+              methods:{
+                ...mapActions({set_token:'user/setToken'  //命名空间模块化})
+              }
+          2、普通方式执行
+              this.$store.dispatch('xxx',{amout:10}) 提交
 */

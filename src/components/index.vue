@@ -4,7 +4,7 @@
       <el-menu
       mode="horizontal"
       >
-        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-menu-item index="1">后台中心</el-menu-item>
       </el-menu>
     </el-header>
     <el-container>
@@ -36,6 +36,10 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">mockjs</span>
               </el-menu-item>
+              <el-menu-item index="/table">
+                <i class="el-icon-setting"></i>
+                <span slot="title">table</span>
+              </el-menu-item>
             </el-menu>
           </el-col>
         </el-row>
@@ -44,7 +48,7 @@
         <router-view/>
       </el-main>
     </el-container>
-    <el-footer>copyright 2020 hpcc</el-footer>
+    <el-footer>copyright 2020 雕大仙</el-footer>
   </el-container>
 </template>
 <script>
@@ -56,7 +60,7 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
     }
   }
 </script>
