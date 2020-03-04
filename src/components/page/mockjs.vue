@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div>{{testdata}}--{{namespace}}</div>
+  <div>{{testdata}}--{{nani}}</div>
   <transition name="fade-in">
     <ul>
         <li v-for="(item,index) in data" :key="index">{{item.author}}--{{item.title}}</li>
@@ -29,7 +29,7 @@ export default {
     },
     computed:{
         ...mapState({
-            namespace:state => state.test.kaka,
+            nani:state => state.test.kaka,
         })
     },
     methods:{
