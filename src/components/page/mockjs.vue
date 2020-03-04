@@ -16,6 +16,7 @@
 
 <script>
 import {mapState,mapActions,mapMutations} from 'vuex'
+import {getMock} from '@/service/api'
 export default {
     name: 'mockjs',
     data() {
@@ -39,9 +40,13 @@ export default {
         }),
         BtnClick(){
             this.getname("show me your code");
-            this.$axios.get('/mock').then((res) => {
-                console.log(res.data);
-                this.data = res.data;
+            // this.$axios.get('/mock').then((res) => {
+            //     console.log(res.data);
+            //     this.data = res.data;
+            // })
+            getMock().then((res) => {
+              console.log(res.data);
+              this.data = res.data;
             })
         }
     }
