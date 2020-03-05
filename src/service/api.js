@@ -1,9 +1,14 @@
-//api.js 统一封装项目请求接口api
+/*
+api.js 统一封装项目请求接口api
+api接口管理的一个好处就是，我们把api统一集中起来，
+如果后期需要修改接口(请求地址、)，我们就直接在api.js中找到对应的修改就好了，
+而不用去每一个页面查找我们的接口然后再修改会很麻烦
+*/
+
 'use strict'
 import Vue from "vue";
-// import { post, get, del, put, upload, exportExcel } from "./index";
 import { post, get, del, put } from "./index";
-const _baseUrl = process.env.VUE_APP_URL;
+// const _baseUrl = process.env.VUE_APP_URL;
 /* eslint-disable */
 Vue.prototype.$post = post
 Vue.prototype.$get = get

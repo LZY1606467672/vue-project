@@ -19,7 +19,8 @@ axios.interceptors.request.use(function (config) {
   loadinginstace = Loading.service({ fullscreen: true })
   if (store.state.token) {
     // 判断是否存在token，如果存在的话，则每个http header都加上token
-    config.headers.Authorization = `token ${store.state.token}`;
+    config.headers.Authorization = store.state.token;
+    // config.headers.Authorization = `token ${store.state.token}`;
     // 设置参数格式
     // if (!config.headers['Content-Type']) {
     //   config.headers = {
