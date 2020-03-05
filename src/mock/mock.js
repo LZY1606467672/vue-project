@@ -28,7 +28,7 @@ const produceData = function(opt){
     function:用于生成响应数据的函数
     options:含有 url、type 和 body 三个属性
 */
-Mock.mock('/test', /post|get/, testData);
-Mock.mock('/mock', /post|get/, produceData);
+Mock.mock('/testData', /post|get/, testData);
+Mock.mock('/mockjs', /post|get/, produceData);
 
 export default Mock;
