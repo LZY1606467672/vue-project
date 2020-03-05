@@ -40,12 +40,12 @@ export default {
         }),
         BtnClick(){
             this.getname("show me your code");
-            // this.$axios.get('/mock').then((res) => {
-            //     console.log(res.data);
+            // this.$axios.get('/mockjs').then((res) => {
+            //     console.log(res);
             //     this.data = res.data;
             // })
             getMock().then((res) => {
-              console.log(res.data);
+              console.log(res);
               this.data = res.data;
             })
         }

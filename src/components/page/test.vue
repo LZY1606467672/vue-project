@@ -33,7 +33,7 @@
       </el-submenu>
     </el-menu>
   </el-aside>
-  
+
   <el-container>
     <el-header style="text-align: right; font-size: 12px">
       <el-dropdown trigger="click" @command="handleCommand">
@@ -46,7 +46,7 @@
       </el-dropdown>
       <span>王小虎</span>
     </el-header>
-    
+
     <el-main>
       <el-table :data="tableData"
       stripe border
@@ -67,29 +67,34 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
-      return {
-        tableData: '',
-      }
-    },
-    created() {
-        this.$axios.get('/test').then((res) => {
-            console.log(res.data);
-             this.tableData = res.data
-        })
-    },
-    methods: {
-        handleCommand(command) {
-            this.$message('click on item'+command);
-        }
+import {getTest} from '@/service/api'
+export default {
+  data() {
+    const item = {
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    };
+    return {
+      tableData: '',
     }
-  };
+  },
+  created() {
+      // this.$axios.get('/test').then((res) => {
+      //     console.log(res.data);
+      //       this.tableData = res.data
+      // })
+      getTest().then((res) =>{
+        console.log(res);
+        this.tableData = res.data
+      })
+  },
+  methods: {
+      handleCommand(command) {
+          this.$message('click on item'+command);
+      }
+  }
+};
 </script>
 
 <style>
@@ -98,7 +103,7 @@
     color: #333;
     line-height: 60px;
   }
-  
+
   .el-aside {
     color: #333;
   }
