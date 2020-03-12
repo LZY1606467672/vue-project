@@ -81,32 +81,32 @@ const router = new VueRouter({
 })
 
 // 页面刷新时，重新赋值token
-// if (window.localStorage.getItem('token')) {
-//   user.commit(TOKEN, window.localStorage.getItem('token'))
+// if (window.localStorage.getItem('Authorization')) {
+//   user.commit("TOKEN", window.localStorage.getItem('Authorization'))
 // }
 
-//路由拦截
+//全局路由拦截
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
   // 另一种方式：if (to.matched.some(r => r.meta.requireAuth))
   //    matched的数组中包含$route对象的检查元字段
   //    arr.some() 表示判断该数组是否有元素符合相应的条件, 返回布尔值
-      if (user.state.token) {  // 通过vuex user.state获取当前的token是否存在，判断是否登录
-          next();
-      }
-      else {
-          next({
-              path: '/login',
-              query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
-          })
-      }
+    if (user.state.Authorization) {  // 通过vuex user.state获取当前的token是否存在，判断是否登录
+      next();
+    }
+    else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
   }
   else {
-      next();
+    next();
   }
 })
 
-// router.afterEach((from, to) =>{
+// router.afterEach((to, from) =>{
 
 // })
 

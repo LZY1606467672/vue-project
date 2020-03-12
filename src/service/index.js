@@ -16,10 +16,10 @@ axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么 例如以下
   console.log("check the axios request");
   loadinginstace = Loading.service({ fullscreen: true })
-  if (user.state.token) {
+  if (user.state.Authorization && user.state.token) {
       // 判断是否存在token，如果存在的话，则每个http header都加上token
       // config.headers.Authorization = `token ${store.state.token}`;
-      config.headers.Authorization = user.state.token
+      config.headers.Authorization = user.state.Authorization
     }
   return config;
 }, function (error) {

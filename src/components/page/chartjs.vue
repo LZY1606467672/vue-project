@@ -6,8 +6,8 @@
         </div>
         </el-col>
         <el-col :span="12">
-            <counter></counter>
-            <counter></counter>
+            <counter @getChildVal="getChildVal"></counter>
+            <counter @getChildVal="getChildVal"></counter>
         </el-col>
     </el-row>
 </template>
@@ -50,7 +50,7 @@ export default {
                 ]
             },
             options: {
-                
+
             }
 
         });
@@ -64,7 +64,10 @@ export default {
                 randam_list.push(num);
             }
             return randam_list;
-        }
+        },
+        getChildVal(val){
+            this.childVal = val;
+          },
     }
 }
 </script>

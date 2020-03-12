@@ -1,20 +1,26 @@
+import { getCooike, setCookie, removeCookie } from '@/utils/auth'
 export const TOKEN = 'TOKEN'
 const state = {
-  token: null
+  // 本地存储 localStorage
+  Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
+  // cookie存储
+  token: getCooike()
 }
 
 const mutations = {
-  [TOKEN]:(state,token) =>{
-    localStorage.token = token;
-    state.token = token;
+  // 修改token，并将token存入localStorage
+  [TOKEN]:(state,user) =>{
+    state.Authorization = user.Authorization;
+    localStorage.setItem('Authorization', user.Authorization);
+    setCookie(user.Authorization);
   }
 }
 
 const actions = {
-  setToken: ({ commit, state }, token)=>{
+  setToken: ({ commit, state }, Authorization)=>{
     return new Promise(resolve =>{
-      commit("TOKEN", token);
-      console.log("login success")
+      console.log(Authorization);
+      commit("TOKEN", Authorization);
     })
   }
 }

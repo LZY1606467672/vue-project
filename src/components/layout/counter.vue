@@ -20,10 +20,12 @@ export default {
     },
     methods: {
         increment: function(){
-            this.counter++
+            this.counter++;
+            this.$emit('getChildVal',this.counter);
         },
         decrement: function(){
-            this.counter--
+            this.counter--;
+            this.$emit('getChildVal',this.counter);
         }
     }
 }

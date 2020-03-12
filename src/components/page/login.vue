@@ -41,6 +41,7 @@
 <script>
 import logoImg from "@/assets/img/logo.png";
 import {mapState, mapActions, mapMutations} from 'vuex'
+import { setCookie } from '@/utils/auth'
 
 export default {
     name: 'login',
@@ -50,13 +51,18 @@ export default {
           loginForm:{
               username: '',
               password: '',
-              logintype: ''
+              type: ''
           },
           rules:{
               username:[{required:true, message:'请确认输入username', trigger:'blur'}],
               password:[{required:true, message:'请确认输入password', trigger:'blur'}]
           }
         }
+    },
+    computed: {
+      ...mapState({
+        token:state=>state.user.token,
+      })
     },
     mounted(){
         // alert("mounted success");
@@ -70,6 +76,7 @@ export default {
         this.$refs[loginForm].validate((valid) => {
           if (valid) {
             this.set_token(this.loginForm);
+            setCookie(this.loginForm.username + ' ' +this.loginForm.password);
             // 跳转至其他页面
             let redirect = decodeURIComponent(this.$route.query.redirect || '/');
             this.$router.push({
