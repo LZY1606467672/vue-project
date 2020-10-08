@@ -7,7 +7,7 @@ api接口管理的一个好处就是，我们把api统一集中起来，
 附：get，post方法不需要再封装，过度封装反而觉得累赘，只要api在一个或多个文件中管理即可（取决于你api数量）
 */
 'use strict'
-import request from './index'
+import request from './http'
 
 //设定一系列请求接口方法，在特定页面中import使用
 
@@ -35,4 +35,4 @@ const getD = function(){
   })
 }
 
-export {getMock,getTest,getD}
+export {getMock, getTest, getD}

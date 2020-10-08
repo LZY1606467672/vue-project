@@ -7,8 +7,24 @@ import { Loading, Message } from 'element-ui' //请求加载动画、消息
 
 // 全局的 axios 默认值
 // axios.defaults.baseURL = 'https://api.example.com'; //配置接口地址
-axios.defaults.baseURL =  ''
+if (process.env.NODE_ENV == 'development'){
+  axios.defaults.baseURL =  ''
+}
+axios.defaults.withCredentials = true //支持发送cookie身份信息,允许跨域的属性withCredentials
+axios.defaults.crossDomain = true // 允许跨域
 axios.defaults.timeout = 5000 // 超时时间
+axios.defaults.transformRequest = [(data) => { //在向服务器发送请求前，序列化请求数据(有效果)
+  data = JSON.stringify(data)
+  // console.log(data)
+  return data
+}]
+// axios.defaults.transformResponse = [(data) => {
+//   if (typeof data === 'string' && data.startsWith('{')) { // 在传递给 then/catch 前，修改响应数据
+//     data = JSON.parse(data)
+//   }
+//   return data
+// }]
+
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8' //配置请求头
 
 var loadinginstace
@@ -69,7 +85,7 @@ export default axios;
 //封装get请求
 export function get (url, params = {}) {
   return new Promise((resolve, reject) => {
-    return  axios.get(url, {
+    axios.get(url, {
       params: params
     })
     .then(response => {
@@ -97,9 +113,10 @@ export function get (url, params = {}) {
 }
 
 //封装post请求
+//post方法必须要使用对提交从参数对象data进行序列化的操作
 export function post (url, data = {}) {
   return new Promise((resolve, reject) => {
-    axios.post(url, data)
+    axios.post(url, QS.stringify(data) )
     .then(response => {
       if (response.data.msg == 'token失效，请重新登录'){
         router.push({name:"login"});

@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
-import axios from './service' //这个引入封装好的axios，自带http拦截
+import axios from './service/http' //这个引入封装好的axios，自带http拦截
 import 'element-ui/lib/theme-chalk/index.css';
-process.env.NODE_ENV === "development" ? require('./mock/mock.js') : null; //develpment模式下加载mock.js 文件
+process.env.NODE_ENV === "development" ? require('./mock/mock.js') : null;
+  //develpment模式下加载mock.js文件(只在开发环境使用mock.js，而打包到生产环境时自动不使用mock.js)
 
 Vue.prototype.$axios = axios //2.修改原型链
 Vue.use(ElementUI);

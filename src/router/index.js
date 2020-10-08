@@ -3,14 +3,17 @@ import VueRouter from 'vue-router'
 import user from '@/store/modules/user.js'
 
 // 路由懒加载
-const index = resolve => require(['@/components/index'], resolve)
+const index = resolve => require(['@/components/index'], resolve) // 异步方式：vue异步组件技术
+// 方式1、vue-router配置路由,使用vue的异步组件技术,可以实现按需加载。但是,这种情况下打包，每一个组件会生成对应一个js文件
+// 方式2、const index = () => import('@/components/index')  // ES6 异步方式：const 组件名=() => import('组件路径');
+// 方式3、webpack的require,ensure()：这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。
+// const list = r => require.ensure([], () => r(require('../components/list/list')), 'list');
 const login = resolve => require(['@/components/page/login'], resolve)
 const mockjs = resolve => require(['@/components/page/mockjs'], resolve)
 const chartjs = resolve => require(['@/components/page/chartjs'], resolve)
 const parent = resolve => require(['@/components/page/parent'], resolve)
 const test = resolve => require(['@/components/page/test'], resolve)
 const table = resolve => require(['@/components/page/table'], resolve)
-// const Parent = resolve => require(['@/components/common/Parent'], resolve)
 
 Vue.use(VueRouter)
 

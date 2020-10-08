@@ -1,6 +1,9 @@
 'use strict'
 import Mock from 'mockjs'
+// process.env.Mock && require('./mock/mock.js')
+// process.env.NODE_ENV === "development" ? Vue.use(Mock) : null;
 import testData from './testData'
+import userData from './usermock'
 
 Mock.setup({
     timeout: '100-300'//设置全局延时
@@ -30,5 +33,6 @@ const produceData = function(opt){
 */
 Mock.mock('/testData', /post|get/, testData);
 Mock.mock('/mockjs', /post|get/, produceData);
+Mock.mock('/usermock', /post/, userData);
 
 export default Mock;

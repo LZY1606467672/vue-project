@@ -12,7 +12,12 @@ files.keys().forEach(key => {
   modules[name] = files(key).default || files(key)
 })
 
+let getters = {
+
+}
+
 export default new Vuex.Store({
     strict: process.env.NODE_ENV !== 'production', //在非生产环境下，使用严格模式
-    modules
+    modules,
+    getters
 })
